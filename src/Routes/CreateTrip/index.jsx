@@ -1,26 +1,32 @@
 import Navbar from "../../Components/Navbar"
 // import '@geoapify/geocoder-autocomplete/styles/minimal.css';
 import { budgetOptionsList, travelOptions } from "../../Constants/options";
-
 import { useState } from "react";
 import GeocoderSearchInput from "../../Tools/GeoCoderSearchInput/GeocoderSearchInput";
+import { AI_PROMPT } from "../../Constants/options";
+import { FIDThresholds } from "web-vitals";
+import { chatSession } from "../../Services/AiModel/aiModel";
 
 
 function CreateTrip() {
-    const [address, setAddress] = useState('');
     const [formData, setFormData] = useState({})
 
-  // Handle input change to set the address
-  const handleInputChange = (e) => {
-    setAddress(e.target.value);
-  };
+    const generateTrip = async () => {
+      console.log(formData)
 
-  // Handle when an address is selected from the list of suggestions
-  const handleResultSelect = (result) => {
-    // You can access the selected result object here
-    console.log(result);
-    setAddress(result.formatted);
-  };
+      const FINAL_PROMPT = AI_PROMPT
+      .replace('{location}', formData.location)
+      .replace('{travellingwith}', formData.travellingWith)
+      .replace('{budget}', formData.budget)
+      .replace('{days}', formData.days)
+
+      console.log(FINAL_PROMPT)
+
+      const result = await chatSession.sendMessage(FINAL_PROMPT)
+      console.log(result.response.text())
+    }
+
+    
 
   return (
     <div>
@@ -64,7 +70,7 @@ function CreateTrip() {
             </ul>
 
             <div className="flex justify-end">
-              <button type='button' className="bg-black px-3 py-3 h-15 w-40 text-xl text-white rounded-lg"> Generate Trip</button>
+              <button type='button' onClick={generateTrip} className="bg-black px-3 py-3 h-15 w-40 text-xl text-white rounded-lg"> Generate Trip</button>
             </div>
             
         </form>

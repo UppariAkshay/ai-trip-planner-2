@@ -53,3 +53,5 @@ export const budgetOptionsList = [
       desc: "Traveling with friends for the best shared adventures, fun experiences, and making memories together."
     }
   ];
+
+  export const AI_PROMPT = 'Generate travel plan for {location} for travelling with {travellingwith} with {budget} budget for {days} days, give me hotels option list with hotelname, hotellocation, hotelprice, hotelimage, geo coordinates, rating and placesSuggectionsList with placename, ticketprice, placeimage, rating, geo cordinates, traveltime, bestTimeToVisit within 3 days in JSON format'
