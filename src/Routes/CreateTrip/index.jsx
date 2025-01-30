@@ -6,13 +6,18 @@ import GeocoderSearchInput from "../../Tools/GeoCoderSearchInput/GeocoderSearchI
 import { AI_PROMPT } from "../../Constants/options";
 import { FIDThresholds } from "web-vitals";
 import { chatSession } from "../../Services/AiModel/aiModel";
-
+import { doc, setDoc } from "firebase/firestore"; 
+import { db } from '../../Services/FireBase'
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 function CreateTrip() {
     const [formData, setFormData] = useState({})
+    const [isLoading, setIsLoading] = useState(false)
 
     const generateTrip = async () => {
+      setIsLoading(true)
       console.log(formData)
+
 
       const FINAL_PROMPT = AI_PROMPT
       .replace('{location}', formData.location)
@@ -23,7 +28,22 @@ function CreateTrip() {
       console.log(FINAL_PROMPT)
 
       const result = await chatSession.sendMessage(FINAL_PROMPT)
-      console.log(result.response.text())
+      saveTrip(result.response.text())
+
+      setIsLoading(false)
+    }
+
+    const saveTrip = async (tripData) => {
+      setIsLoading(true)
+      
+      const docId = Date.now().toString()
+      await setDoc(doc(db, "AiTrips", docId), {
+        userSelection: formData,
+        tripData: JSON.parse(tripData),
+        id: docId
+      });
+
+      setIsLoading(false)
     }
 
     
@@ -70,7 +90,7 @@ function CreateTrip() {
             </ul>
 
             <div className="flex justify-end">
-              <button type='button' onClick={generateTrip} className="bg-black px-3 py-3 h-15 w-40 text-xl text-white rounded-lg"> Generate Trip</button>
+              <button type='button' onClick={generateTrip} className="bg-black px-3 py-3 h-15 text-xl text-white rounded-lg">{isLoading ? <AiOutlineLoading3Quarters className="h-10 w-10 animate-spin" /> : 'Generate Trip'}</button>
             </div>
             
         </form>
