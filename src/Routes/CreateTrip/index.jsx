@@ -9,10 +9,13 @@ import { chatSession } from "../../Services/AiModel/aiModel";
 import { doc, setDoc } from "firebase/firestore"; 
 import { db } from '../../Services/FireBase'
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 function CreateTrip() {
     const [formData, setFormData] = useState({})
     const [isLoading, setIsLoading] = useState(false)
+
+    const navigate = useNavigate()
 
     const generateTrip = async () => {
       setIsLoading(true)
@@ -28,9 +31,16 @@ function CreateTrip() {
       console.log(FINAL_PROMPT)
 
       const result = await chatSession.sendMessage(FINAL_PROMPT)
-      saveTrip(result.response.text())
+      const responseText = result.response.text()
 
-      setIsLoading(false)
+      if (responseText)
+      {
+        saveTrip(responseText)
+        setIsLoading(false)
+      }
+      
+
+      
     }
 
     const saveTrip = async (tripData) => {
@@ -43,6 +53,7 @@ function CreateTrip() {
         id: docId
       });
 
+      navigate(`/view-trip/${docId}`)
       setIsLoading(false)
     }
 

@@ -4,7 +4,10 @@ import Home from './Routes/Home'
 import Navbar from './Components/Navbar'
 import AppTitleHeading from './Components/MainHeading'
 import CreateTrip from './Routes/CreateTrip'
+import ViewTrip from './Routes/ViewTrip'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Login from './Routes/Login'
+import ProtectedRoute from './Routes/ProtectedRoute'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,8 +16,10 @@ function App() {
     <>
     <BrowserRouter >
       <Routes>
-        <Route path ='/' element={<Home />} />
+        <Route path ='/' element={<ProtectedRoute> <Home /> </ProtectedRoute>} />
+        <Route path='/login' element={<Login />} />
         <Route path ='/create-newtrip' element={<CreateTrip />} />
+        <Route path='/view-trip/:tripID' element={<ViewTrip />} />
       </Routes>
     </BrowserRouter>
     </>
