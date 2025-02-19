@@ -1,13 +1,10 @@
 import { useState, useEffect } from 'react'
-import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+
 
 function GeocoderSearchInput(props) {
 
 return (
     <div>
-        <GooglePlacesAutocomplete
-      apiKey="AIzaSyCAB2a8OaB_vkd9r1OxKWcz46KFJW3koqs"
-    />
     </div>
 )
 
