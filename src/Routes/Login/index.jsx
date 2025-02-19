@@ -10,7 +10,8 @@ function Login() {
     if (isSignedIn) navigate('/')
 
   return (
-    <div className='flex justify-between'>
+    <div className='flex flex-col items-center'>
+        <h1 className='text-[40px] mb-10'>Login To Plan your Trip within seconds</h1>
         <SignIn />
     </div>
   )

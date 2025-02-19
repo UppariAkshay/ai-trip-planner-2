@@ -64,8 +64,8 @@ function CreateTrip() {
 
         <form className="flex flex-col gap-5 mt-20">
             <label className="text-left text-[20px] font-bold">What is destination of choice?</label>
-            
-            <GeocoderSearchInput setFormData={setFormData}/>
+            <input type="text" onChange={(e) => setFormData(prevState => ({...prevState,location: e.target.value}))} placeholder="Enter Place Name you wanted to visit" className="h-15 px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            {/* <GeocoderSearchInput setFormData={setFormData}/> */}
         
             <label className="text-left text-[20px] font-bold">How many days are you planning your trip</label>
             <input type='number' onChange={(e) => setFormData(prevState => ({...prevState,days: e.target.value}))} placeholder="Ex: 3" className="h-15 px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"  />
