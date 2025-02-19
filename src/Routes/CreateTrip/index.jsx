@@ -1,10 +1,8 @@
 import Navbar from "../../Components/Navbar"
-// import '@geoapify/geocoder-autocomplete/styles/minimal.css';
 import { budgetOptionsList, travelOptions } from "../../Constants/options";
 import { useState } from "react";
 import GeocoderSearchInput from "../../Tools/GeoCoderSearchInput/GeocoderSearchInput";
 import { AI_PROMPT } from "../../Constants/options";
-import { FIDThresholds } from "web-vitals";
 import { chatSession } from "../../Services/AiModel/aiModel";
 import { doc, setDoc } from "firebase/firestore"; 
 import { db } from '../../Services/FireBase'
@@ -19,7 +17,6 @@ function CreateTrip() {
 
     const generateTrip = async () => {
       setIsLoading(true)
-      console.log(formData)
 
 
       const FINAL_PROMPT = AI_PROMPT
@@ -67,9 +64,7 @@ function CreateTrip() {
 
         <form className="flex flex-col gap-5 mt-20">
             <label className="text-left text-[20px] font-bold">What is destination of choice?</label>
-            {/* <GeoapifyContext apiKey="a20b1e52644649be97f4e53bd01ea83a" >
-                <GeoapifyGeocoderAutocomplete placeholder="Enter address here" onChange={handleInputChange} onResultSelect={handleResultSelect} className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-md focus:ring-2 focus:ring-blue-500"/>
-            </GeoapifyContext> */}
+            
             <GeocoderSearchInput setFormData={setFormData}/>
         
             <label className="text-left text-[20px] font-bold">How many days are you planning your trip</label>
