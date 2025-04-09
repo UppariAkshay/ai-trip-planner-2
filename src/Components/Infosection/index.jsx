@@ -1,12 +1,16 @@
 import React from 'react'
 import travlImage from '../../assets/travelImage/travelImage.jpg'
+import tripBanner from '../../assets/trip-banner/world-trip-banner.jpg'
 
 function InfoSection({trip}) {
   console.log(trip, 'trip in InfoSection')
 
   return (
-    <div className='mb-5'>
-        <img src={travlImage} className='h-[400px] w-full object-cover rounded-md my-10'/>
+    <div>
+      <div className='flex flex-row justify-center'>
+        <img src={tripBanner} className='w-full h-[500px] rounded-[40px] py-5'/>
+      </div>
+        
 
         <h1 className='text-[30px] font-bold text-left mb-3'>{trip?.userSelection?.location}</h1>
         <ul className='flex gap-5'>

@@ -12,7 +12,9 @@ function Login() {
   return (
     <div className='flex flex-col items-center'>
         <h1 className='text-[40px] mb-10'>Login To Plan your Trip within seconds</h1>
+        <p className='text-red-400'>First Sign-up and then login or else it wont work</p>
         <SignIn />
+        
     </div>
   )
 }

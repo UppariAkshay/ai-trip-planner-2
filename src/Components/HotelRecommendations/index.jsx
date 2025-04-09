@@ -1,5 +1,7 @@
 import React from 'react'
 import image from '../../assets/travelImage/travelImage.jpg'
+import imagePlaceholder from '../../assets/image-placeholder/image-placeholder.webp'
+import hotelPlaceholder from '../../assets/hotel-placholder/hotel-placeholder.webp'
 
 function HotelRecommendations({trip}) {
   return (
@@ -7,7 +9,7 @@ function HotelRecommendations({trip}) {
         <h1 className='text-[30px] font-bold text-left mb-5'>Hotel Recommendations</h1>
         <ul className='grid grid-cols-4 gap-5'>
             {trip?.tripData?.hotels.map(eachHotel => <li className='hover:scale-110 transition-all text-left'>
-                <img src={image} className='rounded-md'/>
+                <img src={hotelPlaceholder} className='rounded-md'/>
                 <p className='font-bold text-[20px]'>{eachHotel.hotelName}</p>
                 <p>📍 {eachHotel.hotelLocation}</p>
                 <p>💸 {eachHotel.hotelPrice}</p>

@@ -1,6 +1,6 @@
 import Navbar from "../../Components/Navbar"
 import { budgetOptionsList, travelOptions } from "../../Constants/options";
-import { useState } from "react";
+import React, { useState } from "react";
 import GeocoderSearchInput from "../../Tools/GeoCoderSearchInput/GeocoderSearchInput";
 import { AI_PROMPT } from "../../Constants/options";
 import { chatSession } from "../../Services/AiModel/aiModel";
@@ -8,14 +8,27 @@ import { doc, setDoc } from "firebase/firestore";
 import { db } from '../../Services/FireBase'
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { useGoogleOneTapLogin } from '@react-oauth/google';
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
 
 function CreateTrip() {
     const [formData, setFormData] = useState({})
     const [isLoading, setIsLoading] = useState(false)
+    const [showSignInPopUp, setShowSignInPopUp] = useState(false)
+
+    // const login = useGoogleOneTapLogin({
+    //   onSuccess: (credentialResponse) => console.log(credentialResponse),
+    //   onError: () => console.log('Login Failed'),
+      
+    // });
+
+    // console.log(login)
 
     const navigate = useNavigate()
 
     const generateTrip = async () => {
+      
+
       setIsLoading(true)
 
 
@@ -53,6 +66,11 @@ function CreateTrip() {
       navigate(`/view-trip/${docId}`)
       setIsLoading(false)
     }
+
+    
+
+      
+    
 
     
 
@@ -101,8 +119,40 @@ function CreateTrip() {
             
         </form>
 
+        {/* <button onClick={login} className="bg-black text-white p-4 rounded-md hover:cursor-pointer">Sign In</button> */}
         
+        {/* <GooglePlacesAutocomplete apiKey={import.meta.env.VITE_GOOGLE_PLACES_AUTOCOMPLETE_API_KEY} /> */}
         
+        {/* <Dialog open={showSignInPopUp}>
+      <DialogTrigger asChild>
+        <Button variant="outline">Edit Profile</Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Edit profile</DialogTitle>
+          <DialogDescription>
+            Make changes to your profile here. Click save when you're done.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="name" className="text-right">
+              Name
+            </Label>
+            <Input id="name" value="Pedro Duarte" className="col-span-3" />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="username" className="text-right">
+              Username
+            </Label>
+            <Input id="username" value="@peduarte" className="col-span-3" />
+          </div>
+        </div>
+        <DialogFooter>
+          <Button type="submit">Save changes</Button>
+        </DialogFooter>
+      </DialogContent>
+            </Dialog> */}
                           
     </div>
   )

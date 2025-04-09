@@ -18,8 +18,8 @@ function App() {
       <Routes>
         <Route path ='/' element={<ProtectedRoute> <Home /> </ProtectedRoute>} />
         <Route path='/login' element={<Login />} />
-        <Route path ='/create-newtrip' element={<CreateTrip />} />
-        <Route path='/view-trip/:tripID' element={<ViewTrip />} />
+        <Route path ='/create-newtrip' element={<ProtectedRoute> <CreateTrip /> </ProtectedRoute> } />
+        <Route path='/view-trip/:tripID' element={<ProtectedRoute> <ViewTrip /> </ProtectedRoute>} />
       </Routes>
     </BrowserRouter>
     </>
