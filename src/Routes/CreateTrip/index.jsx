@@ -1,15 +1,15 @@
 import Navbar from "../../Components/Navbar"
 import { budgetOptionsList, travelOptions } from "../../Constants/options";
 import React, { useState } from "react";
-import GeocoderSearchInput from "../../Tools/GeoCoderSearchInput/GeocoderSearchInput";
+// import GeocoderSearchInput from "../../Tools/GeoCoderSearchInput/GeocoderSearchInput";
 import { AI_PROMPT } from "../../Constants/options";
 import { chatSession } from "../../Services/AiModel/aiModel";
 import { doc, setDoc } from "firebase/firestore"; 
 import { db } from '../../Services/FireBase'
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import { useGoogleOneTapLogin } from '@react-oauth/google';
-import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
+// import { useGoogleOneTapLogin } from '@react-oauth/google';
+// import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
 
 function CreateTrip() {
     const [formData, setFormData] = useState({})
